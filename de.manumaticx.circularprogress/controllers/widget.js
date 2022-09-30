@@ -7,7 +7,7 @@ var defaults = {
   width: 200,
   height: 200,
   backgroundColor: "#fff",
-  progressColor: Alloy.CFG.design.colors.bgattemptedred,
+  progressColor: "#0FFF50",
   progressBackgroundColor: "#666",
   progressBackgroundGradient: undefined,
   formatValue: function (v) {
