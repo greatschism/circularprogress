@@ -120,6 +120,10 @@ function createView(_args) {
   return $.container;
 }
 
+if (arguments[0]) {
+  createView(arguments[0]);
+}
+
 /**
  * Updates the progress view
  **/
@@ -129,8 +133,8 @@ function updateUi() {
   // get the angle from percentage value
   var angle = parseFloat((value / 100) * 360);
 
-  $.rightlayer.setVisible(angle > 180);
-  $.leftlayer.setVisible(angle <= 180);
+  $.rightlayer.visible = angle > 180;
+  $.leftlayer.visible = angle <= 180;
 
   // rotation
   $.rotationlayer.transform = Ti.UI.createMatrix2D().rotate(angle);
