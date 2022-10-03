@@ -16,9 +16,6 @@ var defaults = {
   showText: false,
 };
 
-if (arguments[0]) {
-  createView(arguments[0]);
-}
 
 function createView(_args) {
   options = _.defaults(_args, defaults);
@@ -80,17 +77,38 @@ function createView(_args) {
   $.innerrotationlayer.right = 0;
 
   // layer colors
-  $.progresslayer.backgroundColor = options.progressColor;
-  $.progresslayer.backgroundGradient = options.progressGradient;
-  $.leftlayer.backgroundColor =
-    options.progressBackgroundColor || options.backgroundColor;
-  $.leftlayer.backgroundGradient = options.progressBackgroundGradient;
-  $.innerrotationlayer.backgroundColor =
-    options.progressBackgroundColor || options.backgroundColor;
-  $.innerrotationlayer.backgroundGradient = options.progressBackgroundGradient;
-  $.rightlayer.backgroundColor = options.progressColor;
-  $.rightlayer.backgroundGradient = options.progressGradient;
-  $.centerlayer.backgroundColor = options.backgroundColor;
+
+  if (options.backgroundColor) {
+    $.centerlayer.backgroundColor = options.backgroundColor;
+  }
+
+  if (options.progressColor) {
+    $.progresslayer.backgroundColor = options.progressColor;
+    $.rightlayer.backgroundColor = options.progressColor;
+  }
+
+  if (options.progressBackgroundColor) {
+    $.leftlayer.backgroundColor = options.progressBackgroundColor;
+    $.innerrotationlayer.backgroundColor = options.progressBackgroundColor;
+  }
+
+  if (options.progressGradient) {
+    $.progresslayer.backgroundGradient = options.progressGradient;
+    $.rightlayer.backgroundGradient = options.progressGradient;
+  }
+
+  if (options.progressBackgroundColor || options.backgroundColor) {
+    $.innerrotationlayer.backgroundColor =
+      options.progressBackgroundColor || options.backgroundColor;
+    $.leftlayer.backgroundColor =
+      options.progressBackgroundColor || options.backgroundColor;
+  }
+
+  if (options.progressBackgroundGradient) {
+    $.innerrotationlayer.backgroundGradient =
+      options.progressBackgroundGradient;
+    $.leftlayer.backgroundGradient = options.progressBackgroundGradient;
+  }
 
   // squares become circles like
   ["baselayer", "progresslayer", "centerlayer"].forEach(function (layer) {
